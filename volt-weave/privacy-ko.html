@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>볼트 위브: 회로 퍼즐 — 개인정보처리방침</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #05080f; color: #eef5ff; font: 16px/1.75 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; }
+  h1 { font-size: 28px; line-height: 1.3; margin: 0 0 6px; }
+  h2 { font-size: 18px; margin: 32px 0 8px; color: #7ce6ff; }
+  p, li { color: #cfd8ea; }
+  .meta { color: #8ea3bd; font-size: 14px; margin-bottom: 26px; }
+  code { background: #0f1826; padding: 1px 6px; border-radius: 6px; font-size: 14px; }
+  a { color: #2fe9ff; }
+  footer { margin-top: 40px; color: #8ea3bd; font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>개인정보처리방침 — 볼트 위브: 회로 퍼즐</h1>
+  <p class="meta">패키지 <code>com.astrabit.voltweave</code> · 개발자 Astrabit · 최종 수정 2026년 11월 27일</p>
+
+  <p>볼트 위브: 회로 퍼즐은 Astrabit이 배포하는 1인용 퍼즐 게임입니다. 이 문서는 앱이 기기에 저장하는 것, 수집하지 않는 것, 그리고 광고가 어떻게 동작하는지를 설명합니다.</p>
+
+  <h2>1. 기기에만 남는 정보</h2>
+  <p>게임 진행은 앱 내부 WebView의 <code>localStorage</code>(키 이름 <code>voltweave.save.v1</code>)에만 저장됩니다. 클리어한 스테이지, 별, 회전 수, 코인, 부스터, 해금한 스킨, 출석 기록, 일일 퀘스트, 업적, 소리·음악·진동·언어 설정이 여기에 포함됩니다.</p>
+  <p>계정도 로그인도 없습니다. 플레이 기록은 저희나 다른 누구에게도 전송되지 않으며, 저희는 그 내용을 볼 수 없습니다. 앱을 삭제하면 저장 데이터도 삭제됩니다. Android 매니페스트에 <code>android:allowBackup="false"</code>가 설정되어 있어 저장 데이터가 클라우드로 백업되지 않습니다.</p>
+
+  <h2>2. 완전한 오프라인 게임</h2>
+  <p>게임은 앱 안에 함께 들어 있습니다. Android WebView는 <code>blockNetworkLoads=true</code>로 설정되어 있고 <code>file:///android_asset/…</code>만 불러오므로, 게임이 인터넷에서 스크립트·폰트·이미지를 가져오지 않습니다. 180개 스테이지와 오늘의 회로도 모두 오프라인으로 생성되어 앱에 포함됩니다.</p>
+
+  <h2>3. 광고</h2>
+  <p>광고는 Google AdMob(Google Mobile Ads SDK)이 게재합니다. 광고 게재와 측정을 위해 Google은 기기 광고 식별자, IP 주소, 기기 수준의 기술 정보를 처리할 수 있습니다. 저희는 이름, 이메일, 전화번호를 받지 않으며, 광고 데이터를 게임 진행 정보와 결합하지 않습니다.</p>
+  <p>광고를 요청하기 전에 Google UMP(User Messaging Platform) SDK로 동의를 받습니다. 동의 선택은 앱의 <em>설정 → 광고 개인정보 설정</em>에서 언제든 바꿀 수 있습니다. 동의하지 않은 경우 비맞춤 광고만 요청됩니다.</p>
+  <p>퍼즐을 푸는 중에는 광고가 표시되지 않습니다. 플레이 중에는 배너가 숨겨지고, 전면 광고는 스테이지를 클리어한 뒤에만 최소 75초 간격으로 표시될 수 있습니다. 보상형 광고는 선택 사항이며, 광고를 끝까지 시청한 콜백을 받은 경우에만 부스터를 지급합니다.</p>
+
+  <h2>4. 권한</h2>
+  <ul>
+    <li><code>INTERNET</code>, <code>ACCESS_NETWORK_STATE</code>, <code>AD_ID</code> — 광고 SDK만 사용합니다.</li>
+    <li><code>VIBRATE</code> — 타일을 돌릴 때의 짧은 진동이며 설정에서 끌 수 있습니다.</li>
+  </ul>
+  <p>앱은 연락처, 사진, 파일, 위치, 마이크, 카메라 권한을 요청하지 않습니다.</p>
+
+  <h2>5. 아동</h2>
+  <p>이 게임은 만 13세 미만 아동을 대상으로 하지 않으며, 아동의 개인정보를 알면서 수집하지 않습니다. 채팅, 사용자 제작 콘텐츠, 소셜 기능이 없습니다.</p>
+
+  <h2>6. 이용자의 선택</h2>
+  <p><em>설정 → 진행 초기화</em>에서 기기의 모든 진행을 지울 수 있고, 소리·음악·진동은 각각 끌 수 있습니다. 저희 쪽에는 개인정보가 저장되지 않으므로 내려받거나 삭제할 자료가 없습니다.</p>
+
+  <h2>7. 방침 변경</h2>
+  <p>방침이 바뀌면 새 날짜와 함께 이 주소에 게시합니다. 중요한 변경은 앱의 업데이트 노트에도 적습니다.</p>
+
+  <h2>8. 문의</h2>
+  <p>이 방침이나 앱에 대한 문의: <a href="mailto:codepanda2020@gmail.com">codepanda2020@gmail.com</a> — Astrabit, 대한민국.</p>
+
+  <footer>볼트 위브: 회로 퍼즐 · com.astrabit.voltweave · © 2026 Astrabit</footer>
+</main>
+</body>
+</html>
