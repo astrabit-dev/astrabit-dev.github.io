@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ko" data-lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Astrabit — Mobile Games &amp; Apps</title>
+<meta name="description" content="Astrabit is an independent studio in the Republic of Korea making offline puzzle games for Android: Neon Flask: Color Sort, Ring Unlock: Orbit Twist and Color Gate Jam: Block Puzzle.">
+<meta name="theme-color" content="#070510">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230a0618'/%3E%3Cpath d='M32 13 50 51h-9.4l-3-6.6h-11.2L23.4 51H14z' fill='%236fe0ff'/%3E%3Cpath d='M27.6 37.6h8.8L32 28z' fill='%230a0618'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Astrabit">
+<meta property="og:title" content="Astrabit — Mobile Games &amp; Apps">
+<meta property="og:description" content="Offline puzzle games for Android. No accounts, no sign-in, playable in airplane mode.">
+<meta property="og:url" content="https://astrabit-dev.github.io/">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #070510;
+    --text: #ece7ff;
+    --muted: #a99fd0;
+    --dim: #7f76a6;
+    --line: rgba(150, 130, 230, .18);
+    --line-strong: rgba(150, 130, 230, .34);
+    --cyan: #6fe0ff;
+    --violet: #a77bff;
+    --amber: #ffc46b;
+    --green: #6bffb8;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+      radial-gradient(760px 520px at 12% -8%, rgba(111, 224, 255, .17), transparent 62%),
+      radial-gradient(680px 480px at 88% 2%, rgba(167, 123, 255, .19), transparent 64%),
+      radial-gradient(900px 620px at 50% 108%, rgba(255, 122, 217, .09), transparent 66%);
+    pointer-events: none;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(rgba(150, 130, 230, .07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(150, 130, 230, .07) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(circle at 50% 12%, #000 0%, transparent 72%);
+    mask-image: radial-gradient(circle at 50% 12%, #000 0%, transparent 72%);
+    pointer-events: none;
+  }
+  a { color: var(--cyan); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { width: 100%; max-width: 1060px; margin: 0 auto; padding: 0 22px; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  [data-lang="ko"] .en { display: none !important; }
+  [data-lang="en"] .ko { display: none !important; }
+
+  /* ---------- header ---------- */
+  .site-head { border-bottom: 1px solid var(--line); }
+  .site-head .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; padding-top: 16px; padding-bottom: 16px;
+  }
+  .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--text); font-weight: 700; letter-spacing: .01em; }
+  .brand:hover { text-decoration: none; }
+  .brand svg { width: 26px; height: 26px; display: block; }
+  .brand small { display: block; font-size: 11px; font-weight: 500; color: var(--dim); letter-spacing: .08em; text-transform: uppercase; }
+  .lang-toggle {
+    display: inline-flex; align-items: center; gap: 2px;
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid var(--line-strong);
+    border-radius: 999px; padding: 3px;
+    font: inherit; cursor: pointer;
+  }
+  .lang-toggle span {
+    display: inline-block; padding: 4px 11px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; letter-spacing: .04em; color: var(--dim);
+  }
+  [data-lang="ko"] .lang-toggle .t-ko,
+  [data-lang="en"] .lang-toggle .t-en { background: rgba(111, 224, 255, .16); color: var(--cyan); }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 68px 0 12px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--line-strong); border-radius: 999px;
+    padding: 5px 13px; font-size: 12px; letter-spacing: .09em;
+    text-transform: uppercase; color: var(--muted);
+    background: rgba(255, 255, 255, .03);
+  }
+  .pill i { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
+  h1 {
+    margin: 20px 0 0;
+    font-size: clamp(46px, 9vw, 82px);
+    line-height: 1.02;
+    letter-spacing: -.03em;
+    font-weight: 800;
+    background: linear-gradient(100deg, #ffffff 8%, var(--cyan) 46%, var(--violet) 88%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .lead { margin: 18px 0 0; max-width: 620px; font-size: clamp(16px, 2.4vw, 18px); color: var(--muted); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    border-radius: 999px; padding: 10px 18px;
+    font-size: 14px; font-weight: 600; line-height: 1.2;
+    border: 1px solid var(--line-strong); color: var(--text);
+    background: rgba(255, 255, 255, .04);
+    transition: background .18s ease, border-color .18s ease, transform .18s ease;
+  }
+  .btn:hover { text-decoration: none; background: rgba(255, 255, 255, .08); border-color: rgba(150, 130, 230, .55); transform: translateY(-1px); }
+  .btn-primary {
+    color: #08040f;
+    background: linear-gradient(120deg, #ffffff, #dcd6ff);
+    border-color: transparent;
+    box-shadow: 0 8px 26px rgba(111, 224, 255, .18);
+  }
+  .btn-primary:hover { background: linear-gradient(120deg, #ffffff, #c9c0ff); }
+  .btn svg { width: 15px; height: 15px; flex: none; }
+
+  /* ---------- sections ---------- */
+  section { padding: 54px 0 0; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
+  h2 { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--cyan); }
+  .sec-head p { margin: 0; font-size: 14px; color: var(--dim); }
+
+  /* ---------- game cards ---------- */
+  .cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(272px, 1fr)); }
+  .card {
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; gap: 14px;
+    padding: 22px 20px 20px;
+    border: 1px solid var(--line); border-radius: 20px;
+    background: linear-gradient(165deg, rgba(255, 255, 255, .062), rgba(255, 255, 255, .018) 58%, rgba(255, 255, 255, .008));
+    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+  }
+  .card::before {
+    content: ""; position: absolute; inset: -1px -1px auto -1px; height: 190px;
+    background: radial-gradient(120% 100% at 10% 0%, var(--glow), transparent 68%);
+    opacity: .75; pointer-events: none;
+  }
+  .card:hover { transform: translateY(-3px); border-color: var(--edge); box-shadow: 0 18px 44px rgba(3, 0, 14, .55); }
+  .card > * { position: relative; }
+  .card[data-game="neon-flask"] { --glow: rgba(111, 224, 255, .22); --edge: rgba(111, 224, 255, .45); }
+  .card[data-game="ring-unlock"] { --glow: rgba(255, 196, 107, .2); --edge: rgba(255, 196, 107, .45); }
+  .card[data-game="color-gate-jam"] { --glow: rgba(107, 255, 184, .18); --edge: rgba(107, 255, 184, .45); }
+
+  .card-head { display: flex; align-items: center; gap: 13px; }
+  .glyph {
+    width: 52px; height: 52px; flex: none;
+    border-radius: 15px;
+    background: rgba(9, 5, 22, .72);
+    border: 1px solid var(--line-strong);
+    padding: 7px;
+  }
+  .card h3 { margin: 0; font-size: 17px; line-height: 1.35; font-weight: 700; letter-spacing: -.01em; }
+  .card h3 span { display: block; font-size: 12.5px; font-weight: 500; color: var(--dim); letter-spacing: .01em; margin-top: 2px; }
+  .tagline { margin: 0; font-size: 14.5px; color: #d9d2f2; }
+  .facts { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .facts li {
+    font-size: 11.5px; color: var(--muted); letter-spacing: .01em;
+    border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px;
+    background: rgba(255, 255, 255, .025);
+  }
+  .card-foot { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+  .play {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 8px 14px; border-radius: 999px;
+    font-size: 13px; font-weight: 600; color: #08040f;
+    background: linear-gradient(120deg, #ffffff, #dfd9ff);
+    transition: filter .18s ease, transform .18s ease;
+  }
+  .play:hover { text-decoration: none; filter: brightness(1.06); transform: translateY(-1px); }
+  .play svg { width: 13px; height: 13px; flex: none; }
+  .privacy-links { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12.5px; }
+  .privacy-links a { color: var(--dim); }
+  .privacy-links a:hover { color: var(--cyan); }
+  .pkg { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; color: #6f679a; }
+
+  /* ---------- about / contact ---------- */
+  .panel {
+    border: 1px solid var(--line); border-radius: 20px;
+    background: rgba(255, 255, 255, .028);
+    padding: 26px 24px;
+  }
+  .panel p { margin: 0 0 14px; color: var(--muted); font-size: 15px; max-width: 760px; }
+  .panel p:last-child { margin-bottom: 0; }
+  .mail {
+    display: inline-flex; align-items: center; gap: 9px; margin-top: 4px;
+    font-size: 15px; font-weight: 600; color: var(--text);
+    border-bottom: 1px dashed rgba(150, 130, 230, .5); padding-bottom: 2px;
+  }
+  .mail:hover { text-decoration: none; color: var(--cyan); border-bottom-color: var(--cyan); }
+  .mail svg { width: 16px; height: 16px; }
+
+  /* ---------- footer ---------- */
+  footer { margin-top: 62px; border-top: 1px solid var(--line); }
+  footer .wrap {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 10px 20px; padding-top: 20px; padding-bottom: 30px;
+    font-size: 12.5px; color: var(--dim);
+  }
+  footer nav { display: flex; flex-wrap: wrap; gap: 14px; }
+  footer a { color: var(--dim); }
+  footer a:hover { color: var(--cyan); }
+
+  @media (max-width: 640px) {
+    .hero { padding-top: 48px; }
+    section { padding-top: 44px; }
+    .card { padding: 20px 18px 18px; }
+    .glyph { width: 46px; height: 46px; border-radius: 13px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Astrabit">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="16" fill="#0a0618" stroke="#2b2150"/>
+        <path d="M32 13 50 51h-9.4l-3-6.6H26.4L23.4 51H14z" fill="#6fe0ff"/>
+        <path d="M27.6 37.6h8.8L32 28z" fill="#0a0618"/>
+      </svg>
+      <span>Astrabit<small>Mobile Games &amp; Apps</small></span>
+    </a>
+    <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Language / 언어">
+      <span class="t-ko">KO</span><span class="t-en">EN</span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <p class="pill"><i aria-hidden="true"></i>Astrabit<span aria-hidden="true">·</span>Google Play</p>
+    <h1>Astrabit</h1>
+    <p class="lead ko" lang="ko">기기 안에서 완결되는 퍼즐 게임을 만듭니다. 계정도 로그인도 없이, 비행기 모드에서도 그대로 돌아갑니다.</p>
+    <p class="lead en" lang="en">We make puzzle games that live entirely on your device — no accounts, no sign-in, fully playable in airplane mode.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#games">
+        <span class="ko" lang="ko">게임 보기</span><span class="en" lang="en">See the games</span>
+      </a>
+      <a class="btn" href="https://play.google.com/store/apps/developer?id=Astrabit" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3.2v17.6c0 .6.7 1 1.2.7l13.5-8.8c.5-.3.5-1 0-1.3L5.2 2.5C4.7 2.2 4 2.6 4 3.2z" fill="currentColor"/></svg>
+        <span class="ko" lang="ko">Google Play 개발자 페이지</span><span class="en" lang="en">Google Play developer page</span>
+      </a>
+    </div>
+  </div>
+
+  <section id="games">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="ko" lang="ko">게임</span><span class="en" lang="en">Games</span></h2>
+        <p class="ko" lang="ko">세 편 모두 Google Play에서 내려받을 수 있습니다.</p>
+        <p class="en" lang="en">All three are available on Google Play.</p>
+      </div>
+
+      <div class="cards">
+
+        <article class="card" data-game="neon-flask">
+          <div class="card-head">
+            <svg class="glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <defs>
+                <linearGradient id="nf-grad" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0" stop-color="#ff5fd2"/><stop offset=".52" stop-color="#a77bff"/><stop offset="1" stop-color="#6fe0ff"/>
+                </linearGradient>
+              </defs>
+              <path d="M20 7v10.5c0 1.2-.3 2.3-1 3.3L12.4 31.4A6 6 0 0 0 11.5 35v3.5A4.5 4.5 0 0 0 16 43h16a4.5 4.5 0 0 0 4.5-4.5V35a6 6 0 0 0-.9-3.6L29 20.8c-.7-1-1-2.1-1-3.3V7"
+                    fill="none" stroke="url(#nf-grad)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+              <path d="M13.4 33h21.2v5.5a3.4 3.4 0 0 1-3.4 3.4H16.8a3.4 3.4 0 0 1-3.4-3.4z" fill="url(#nf-grad)" opacity=".6"/>
+              <path d="M20 7h8" stroke="#6fe0ff" stroke-width="2.4" stroke-linecap="round"/>
+              <circle cx="30.5" cy="37" r="1.8" fill="#0a0618" opacity=".5"/>
+            </svg>
+            <h3>
+              <span class="ko" lang="ko">네온 플라스크: 컬러 정렬</span><span class="en" lang="en">Neon Flask: Color Sort</span>
+              <span class="en" lang="en">네온 플라스크</span>
+              <span class="ko" lang="ko">Neon Flask: Color Sort</span>
+            </h3>
+          </div>
+          <p class="tagline ko" lang="ko">네온 액체를 플라스크 사이로 부어 색을 정리하세요.</p>
+          <p class="tagline en" lang="en">Pour neon liquid between flasks until every colour stands alone.</p>
+          <ul class="facts">
+            <li class="ko" lang="ko">180 스테이지 · 9개 월드</li>
+            <li class="en" lang="en">180 stages · 9 worlds</li>
+            <li class="ko" lang="ko">완전 오프라인</li>
+            <li class="en" lang="en">Fully offline</li>
+            <li class="ko" lang="ko">계정 없음</li>
+            <li class="en" lang="en">No account</li>
+          </ul>
+          <div class="card-foot">
+            <a class="play" href="https://play.google.com/store/apps/details?id=com.astrabit.neonflask" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3.2v17.6c0 .6.7 1 1.2.7l13.5-8.8c.5-.3.5-1 0-1.3L5.2 2.5C4.7 2.2 4 2.6 4 3.2z" fill="currentColor"/></svg>
+              Google Play
+            </a>
+            <div class="privacy-links">
+              <a href="neon-flask/privacy-ko.html" lang="ko">개인정보처리방침</a>
+              <a href="neon-flask/privacy.html" lang="en">Privacy Policy</a>
+            </div>
+          </div>
+          <p class="pkg">com.astrabit.neonflask</p>
+        </article>
+
+        <article class="card" data-game="ring-unlock">
+          <div class="card-head">
+            <svg class="glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <g fill="none" stroke-linecap="round">
+                <circle cx="24" cy="25" r="16" stroke="#ffc46b" stroke-width="2.4" stroke-dasharray="76 25" transform="rotate(-34 24 25)"/>
+                <circle cx="24" cy="25" r="10.5" stroke="#ff9a5c" stroke-width="2.4" stroke-dasharray="44 22" transform="rotate(64 24 25)"/>
+                <circle cx="24" cy="25" r="5" stroke="#ffe1a8" stroke-width="2.4" stroke-dasharray="18 14" transform="rotate(-118 24 25)"/>
+              </g>
+              <circle cx="24" cy="9" r="2.6" fill="#ffc46b"/>
+            </svg>
+            <h3>
+              <span class="ko" lang="ko">링 언락: 오비트 트위스트</span><span class="en" lang="en">Ring Unlock: Orbit Twist</span>
+              <span class="en" lang="en">링 언락</span>
+              <span class="ko" lang="ko">Ring Unlock: Orbit Twist</span>
+            </h3>
+          </div>
+          <p class="tagline ko" lang="ko">링을 돌려 래치를 게이트에 맞추고 잠금을 여세요.</p>
+          <p class="tagline en" lang="en">Spin the rings, align the latches, and unpick every lock.</p>
+          <ul class="facts">
+            <li class="ko" lang="ko">잠금 210개 · 9개 월드</li>
+            <li class="en" lang="en">210 locks · 9 worlds</li>
+            <li class="ko" lang="ko">완전 오프라인</li>
+            <li class="en" lang="en">Fully offline</li>
+            <li class="ko" lang="ko">계정 없음</li>
+            <li class="en" lang="en">No account</li>
+          </ul>
+          <div class="card-foot">
+            <a class="play" href="https://play.google.com/store/apps/details?id=com.astrabit.ringunlock" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3.2v17.6c0 .6.7 1 1.2.7l13.5-8.8c.5-.3.5-1 0-1.3L5.2 2.5C4.7 2.2 4 2.6 4 3.2z" fill="currentColor"/></svg>
+              Google Play
+            </a>
+            <div class="privacy-links">
+              <a href="ring-unlock/privacy-ko.html" lang="ko">개인정보처리방침</a>
+              <a href="ring-unlock/privacy.html" lang="en">Privacy Policy</a>
+            </div>
+          </div>
+          <p class="pkg">com.astrabit.ringunlock</p>
+        </article>
+
+        <article class="card" data-game="color-gate-jam">
+          <div class="card-head">
+            <svg class="glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <rect x="7" y="17" width="11" height="11" rx="3" fill="#6bffb8"/>
+              <rect x="20" y="28.5" width="11" height="11" rx="3" fill="#6fe0ff" opacity=".9"/>
+              <rect x="7" y="30" width="9" height="9" rx="2.6" fill="#a77bff" opacity=".85"/>
+              <path d="M25 12h13M33 7l5.5 5M33 17l5.5-5" fill="none" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3>
+              <span class="ko" lang="ko">컬러 게이트 잼: 블록 퍼즐</span><span class="en" lang="en">Color Gate Jam: Block Puzzle</span>
+              <span class="en" lang="en">컬러 게이트 잼</span>
+              <span class="ko" lang="ko">Color Gate Jam: Block Puzzle</span>
+            </h3>
+          </div>
+          <p class="tagline ko" lang="ko">블록을 같은 색 게이트로 밀어서 탈출시키세요.</p>
+          <p class="tagline en" lang="en">Slide every block through the gate that matches its colour.</p>
+          <ul class="facts">
+            <li class="ko" lang="ko">180 스테이지 · 9개 월드</li>
+            <li class="en" lang="en">180 stages · 9 worlds</li>
+            <li class="ko" lang="ko">완전 오프라인</li>
+            <li class="en" lang="en">Fully offline</li>
+            <li class="ko" lang="ko">계정 없음</li>
+            <li class="en" lang="en">No account</li>
+          </ul>
+          <div class="card-foot">
+            <a class="play" href="https://play.google.com/store/apps/details?id=com.astrabit.colorgatejam" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3.2v17.6c0 .6.7 1 1.2.7l13.5-8.8c.5-.3.5-1 0-1.3L5.2 2.5C4.7 2.2 4 2.6 4 3.2z" fill="currentColor"/></svg>
+              Google Play
+            </a>
+            <div class="privacy-links">
+              <a href="color-gate-jam/privacy-ko.html" lang="ko">개인정보처리방침</a>
+              <a href="color-gate-jam/privacy.html" lang="en">Privacy Policy</a>
+            </div>
+          </div>
+          <p class="pkg">com.astrabit.colorgatejam</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="ko" lang="ko">스튜디오</span><span class="en" lang="en">Studio</span></h2>
+      </div>
+      <div class="panel">
+        <p class="ko" lang="ko">Astrabit은 대한민국의 인디 스튜디오로, Android용 퍼즐 게임을 만듭니다. 모든 게임은 기기 안에서 완결되어 오프라인으로 동작하고, 진행 상황은 기기 안에만 저장되며, 광고는 Google AdMob을 통해서만 표시됩니다. 저희는 별도 서버를 운영하지 않고 게임 기록을 수집하지 않습니다.</p>
+        <p class="en" lang="en">Astrabit is an independent studio in the Republic of Korea making puzzle games for Android. Every game runs completely offline, keeps your progress only on your device, and shows ads solely through Google AdMob. We run no servers of our own and do not collect gameplay data.</p>
+        <p class="ko" lang="ko">각 게임이 수집하지 않는 정보와 광고 동작 방식은 위 카드의 개인정보처리방침에서 자세히 확인할 수 있습니다.</p>
+        <p class="en" lang="en">Each game's privacy policy — linked on the cards above — explains exactly what the app stores, what it does not collect, and how advertising works.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="ko" lang="ko">문의</span><span class="en" lang="en">Contact</span></h2>
+      </div>
+      <div class="panel">
+        <p class="ko" lang="ko">버그 신고, 게임 관련 문의, 개인정보 관련 요청은 아래 주소로 보내주세요. 확인 후 답장드립니다.</p>
+        <p class="en" lang="en">Bug reports, questions about a game, and privacy requests are all welcome at the address below. We reply after reviewing each message.</p>
+        <a class="mail" href="mailto:codepanda2020@gmail.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 6l9 6.5L21 6"/>
+          </svg>
+          codepanda2020@gmail.com
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Astrabit · <span class="ko" lang="ko">대한민국</span><span class="en" lang="en">Republic of Korea</span></span>
+    <nav>
+      <a href="https://play.google.com/store/apps/developer?id=Astrabit" target="_blank" rel="noopener">Google Play</a>
+      <a href="app-ads.txt">app-ads.txt</a>
+      <a href="#games"><span class="ko" lang="ko">게임</span><span class="en" lang="en">Games</span></a>
+      <a href="#contact"><span class="ko" lang="ko">문의</span><span class="en" lang="en">Contact</span></a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('lang-toggle');
+    if (!btn) return;
+    function apply(lang) {
+      root.setAttribute('data-lang', lang);
+      root.setAttribute('lang', lang);
+    }
+    try {
+      var saved = localStorage.getItem('astrabit.lang');
+      if (saved === 'en' || saved === 'ko') apply(saved);
+    } catch (e) {}
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-lang') === 'en' ? 'ko' : 'en';
+      apply(next);
+      try { localStorage.setItem('astrabit.lang', next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
