@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Astrabit — Mobile Games &amp; Apps</title>
-<meta name="description" content="Astrabit is an independent studio in the Republic of Korea making offline puzzle games for Android: Neon Flask: Color Sort, Ring Unlock: Orbit Twist and Color Gate Jam: Block Puzzle.">
+<meta name="description" content="Astrabit is an independent studio in the Republic of Korea making offline puzzle games for Android: Neon Flask: Color Sort, Ring Unlock: Orbit Twist, Color Gate Jam: Block Puzzle and Volt Weave: Circuit Puzzle.">
 <meta name="theme-color" content="#070510">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230a0618'/%3E%3Cpath d='M32 13 50 51h-9.4l-3-6.6h-11.2L23.4 51H14z' fill='%236fe0ff'/%3E%3Cpath d='M27.6 37.6h8.8L32 28z' fill='%230a0618'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
@@ -163,6 +163,7 @@
   .card[data-game="neon-flask"] { --glow: rgba(111, 224, 255, .22); --edge: rgba(111, 224, 255, .45); }
   .card[data-game="ring-unlock"] { --glow: rgba(255, 196, 107, .2); --edge: rgba(255, 196, 107, .45); }
   .card[data-game="color-gate-jam"] { --glow: rgba(107, 255, 184, .18); --edge: rgba(107, 255, 184, .45); }
+  .card[data-game="volt-weave"] { --glow: rgba(167, 123, 255, .2); --edge: rgba(167, 123, 255, .45); }
 
   .card-head { display: flex; align-items: center; gap: 13px; }
   .glyph {
@@ -273,11 +274,58 @@
     <div class="wrap">
       <div class="sec-head">
         <h2><span class="ko" lang="ko">게임</span><span class="en" lang="en">Games</span></h2>
-        <p class="ko" lang="ko">세 편 모두 Google Play에서 내려받을 수 있습니다.</p>
-        <p class="en" lang="en">All three are available on Google Play.</p>
+        <p class="ko" lang="ko">네 편 모두 Google Play에서 내려받을 수 있습니다.</p>
+        <p class="en" lang="en">All four are available on Google Play.</p>
       </div>
 
       <div class="cards">
+
+        <article class="card" data-game="volt-weave">
+          <div class="card-head">
+            <svg class="glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <defs>
+                <linearGradient id="vw-grad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#a77bff"/><stop offset=".55" stop-color="#6fe0ff"/><stop offset="1" stop-color="#6bffb8"/>
+                </linearGradient>
+              </defs>
+              <path d="M9 25h5.5M33.5 25H39M25 9v5.5M25 33.5V39" fill="none" stroke="url(#vw-grad)" stroke-width="2.4" stroke-linecap="round"/>
+              <rect x="14.5" y="14.5" width="21" height="21" rx="6" fill="none" stroke="url(#vw-grad)" stroke-width="2.4"/>
+              <path d="M20 25h10" fill="none" stroke="url(#vw-grad)" stroke-width="2.4" stroke-linecap="round"/>
+              <circle cx="20" cy="25" r="2.4" fill="#6fe0ff"/>
+              <circle cx="30" cy="25" r="2.4" fill="#6bffb8"/>
+              <circle cx="9" cy="25" r="2" fill="#a77bff"/>
+              <circle cx="39" cy="25" r="2" fill="#a77bff"/>
+            </svg>
+            <h3>
+              <span class="ko" lang="ko">볼트 위브: 회로 퍼즐</span><span class="en" lang="en">Volt Weave: Circuit Puzzle</span>
+              <span class="en" lang="en">볼트 위브</span>
+              <span class="ko" lang="ko">Volt Weave: Circuit Puzzle</span>
+            </h3>
+          </div>
+          <p class="tagline ko" lang="ko">타일을 눌러 회로를 90도씩 돌리고, 모든 램프에 전류를 잇세요.</p>
+          <p class="tagline en" lang="en">Turn every wire tile 90 degrees and route the current to every lamp.</p>
+          <ul class="facts">
+            <li class="ko" lang="ko">180 스테이지 · 9개 월드</li>
+            <li class="en" lang="en">180 stages · 9 worlds</li>
+            <li class="ko" lang="ko">매일 새 회로</li>
+            <li class="en" lang="en">Daily circuit</li>
+            <li class="ko" lang="ko">완전 오프라인</li>
+            <li class="en" lang="en">Fully offline</li>
+            <li class="ko" lang="ko">계정 없음</li>
+            <li class="en" lang="en">No account</li>
+          </ul>
+          <div class="card-foot">
+            <a class="play" href="https://play.google.com/store/apps/details?id=com.astrabit.voltweave" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3.2v17.6c0 .6.7 1 1.2.7l13.5-8.8c.5-.3.5-1 0-1.3L5.2 2.5C4.7 2.2 4 2.6 4 3.2z" fill="currentColor"/></svg>
+              Google Play
+            </a>
+            <div class="privacy-links">
+              <a href="volt-weave/privacy-ko.html" lang="ko">개인정보처리방침</a>
+              <a href="volt-weave/privacy.html" lang="en">Privacy Policy</a>
+            </div>
+          </div>
+          <p class="pkg">com.astrabit.voltweave</p>
+        </article>
 
         <article class="card" data-game="neon-flask">
           <div class="card-head">
