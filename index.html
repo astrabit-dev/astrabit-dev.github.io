@@ -164,6 +164,7 @@
   .card[data-game="ring-unlock"] { --glow: rgba(255, 196, 107, .2); --edge: rgba(255, 196, 107, .45); }
   .card[data-game="color-gate-jam"] { --glow: rgba(107, 255, 184, .18); --edge: rgba(107, 255, 184, .45); }
   .card[data-game="volt-weave"] { --glow: rgba(167, 123, 255, .2); --edge: rgba(167, 123, 255, .45); }
+  .card[data-game="firefly-garden"] { --glow: rgba(125, 255, 210, .2); --edge: rgba(125, 255, 210, .45); }
 
   .card-head { display: flex; align-items: center; gap: 13px; }
   .glyph {
@@ -274,11 +275,57 @@
     <div class="wrap">
       <div class="sec-head">
         <h2><span class="ko" lang="ko">게임</span><span class="en" lang="en">Games</span></h2>
-        <p class="ko" lang="ko">네 편 모두 Google Play에서 내려받을 수 있습니다.</p>
-        <p class="en" lang="en">All four are available on Google Play.</p>
+        <p class="ko" lang="ko">다섯 편 모두 Google Play에서 내려받을 수 있습니다.</p>
+        <p class="en" lang="en">All five are available on Google Play.</p>
       </div>
 
       <div class="cards">
+
+        <article class="card" data-game="firefly-garden">
+          <div class="card-head">
+            <svg class="glyph" viewBox="0 0 48 48" aria-hidden="true">
+              <defs>
+                <linearGradient id="fg-grad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#a8ffdf"/><stop offset=".55" stop-color="#7dffd2"/><stop offset="1" stop-color="#ffd76a"/>
+                </linearGradient>
+              </defs>
+              <ellipse cx="24" cy="36" rx="15" ry="6.5" fill="none" stroke="url(#fg-grad)" stroke-width="2.2"/>
+              <path d="M24 30v-5" fill="none" stroke="url(#fg-grad)" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M24 9c-3.4 4.2-5.1 7.2-5.1 9.7 0 2.9 2 5.1 5.1 7.2 3.1-2.1 5.1-4.3 5.1-7.2C29.1 16.2 27.4 13.2 24 9z" fill="url(#fg-grad)"/>
+              <circle cx="24" cy="19" r="2.8" fill="#fffdf2"/>
+              <circle cx="13" cy="27" r="1.8" fill="#ffd76a"/>
+              <circle cx="35" cy="24" r="1.5" fill="#a8ffdf"/>
+            </svg>
+            <h3>
+              <span class="ko" lang="ko">반딧불 정원: 빛 퍼즐</span><span class="en" lang="en">Firefly Garden: Light Puzzle</span>
+              <span class="en" lang="en">반딧불 정원</span>
+              <span class="ko" lang="ko">Firefly Garden: Light Puzzle</span>
+            </h3>
+          </div>
+          <p class="tagline ko" lang="ko">등불을 누르면 이웃까지 함께 켜져요. 연못의 모든 등불을 밝히세요.</p>
+          <p class="tagline en" lang="en">Tap a lantern to wake it and its neighbours, and light the whole pond.</p>
+          <ul class="facts">
+            <li class="ko" lang="ko">180 스테이지 · 9개 월드</li>
+            <li class="en" lang="en">180 stages · 9 worlds</li>
+            <li class="ko" lang="ko">매일 새 연못</li>
+            <li class="en" lang="en">Daily pond</li>
+            <li class="ko" lang="ko">완전 오프라인</li>
+            <li class="en" lang="en">Fully offline</li>
+            <li class="ko" lang="ko">계정 없음</li>
+            <li class="en" lang="en">No account</li>
+          </ul>
+          <div class="card-foot">
+            <a class="play" href="https://play.google.com/store/apps/details?id=com.astrabit.fireflygarden" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3.2v17.6c0 .6.7 1 1.2.7l13.5-8.8c.5-.3.5-1 0-1.3L5.2 2.5C4.7 2.2 4 2.6 4 3.2z" fill="currentColor"/></svg>
+              Google Play
+            </a>
+            <div class="privacy-links">
+              <a href="firefly-garden/privacy-ko.html" lang="ko">개인정보처리방침</a>
+              <a href="firefly-garden/privacy.html" lang="en">Privacy Policy</a>
+            </div>
+          </div>
+          <p class="pkg">com.astrabit.fireflygarden</p>
+        </article>
 
         <article class="card" data-game="volt-weave">
           <div class="card-head">
